@@ -42,6 +42,7 @@ class Quizstarter:
 
     def name_page(self):
         background_color = "OldLace"
+        color_for_button = "#e3edf6"
         # frame setup
         self.quiz_frame = Frame(self.parent,
                                 bg=background_color,
@@ -65,7 +66,7 @@ class Quizstarter:
         self.continue_button = Button(self.quiz_frame,
                                       text='Continue',
                                       font=("Indie Flower", "13", "bold"),
-                                      bg="pink",
+                                      bg=color_for_button,
                                       command=self.name_collection)
         self.continue_button.grid(row=4, padx=20, pady=25)
 
@@ -104,6 +105,7 @@ class Quizstarter:
             dump(self.data, open(f'data/{self.name}.json','w'))
             self.end_page()
         background_color = "OldLace"
+        color_for_button = "#e3edf6"
         # frame setup
         self.quiz_frame = Frame(root,
                                 bg=background_color,
@@ -119,21 +121,21 @@ class Quizstarter:
 
         self.rb1 = Radiobutton(self.quiz_frame, text=qanswers[self.number][1], font=("Helvetica", "12"),
                                bg=background_color,
-                               value=1, padx=10, pady=10, variable=self.var1, indicator=0, background="light blue")
+                               value=1, padx=10, pady=10, variable=self.var1, indicator=0, background=color_for_button)
         self.rb1.grid(row=2, sticky=W)
 
         self.rb2 = Radiobutton(self.quiz_frame, text=qanswers[self.number][2], font=("Helvetica", "12"),
                                bg=background_color,
-                               value=2, padx=10, pady=10, variable=self.var1, indicator=0, background="light blue")
+                               value=2, padx=10, pady=10, variable=self.var1, indicator=0, background=color_for_button)
         self.rb2.grid(row=3, sticky=W)
 
         self.rb3 = Radiobutton(self.quiz_frame, text=qanswers[self.number][3], font=("Helvetica", "12"),
                                bg=background_color,
-                               value=3, padx=10, pady=10, variable=self.var1, indicator=0, background="light blue")
+                               value=3, padx=10, pady=10, variable=self.var1, indicator=0, background=color_for_button)
         self.rb3.grid(row=4, sticky=W)
 
         self.quiz_instance = Button(self.quiz_frame, text="Confirm", font=("Helvetica", "13", "bold"),
-                                    bg="SpringGreen3", command=self.test_progress)
+                                    bg=color_for_button, command=self.test_progress)
         self.quiz_instance.grid(row=7, padx=5, pady=5)
 
     def qsetup(self):
