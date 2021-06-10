@@ -54,6 +54,8 @@ class Quizstarter:
                                    bg=background_color)
         self.handing_label.grid(row=0, padx=20)
 
+    
+
         self.user_label = Label(self.quiz_frame,
                                 text="Enter your name:",
                                 font=("Indie Flower", "17"),
@@ -86,7 +88,7 @@ class Quizstarter:
         self.continue_button = Button(self.quiz_frame,
                                       text='Exit',
                                       font=("Helvetica", "13", "bold"),
-                                      bg="pink",
+                                      bg=color_for_button,
                                       command=exit)
         self.continue_button.grid(row=4, padx=20, pady=25)
 
@@ -95,6 +97,14 @@ class Quizstarter:
         if self.name.replace(' ','') == '':
             self.quiz_frame.destroy()
             self.name_page()
+            background_color = "OldLace"
+            self.warning_label = Label(self.quiz_frame,
+                                text="Please enter your name:",
+                                font=("Indie Flower", "15"), fg="Red",
+                                bg=background_color)
+            self.warning_label.grid(row=2, padx=20, pady=20)
+
+          
         else:
             self.new_question()
 
