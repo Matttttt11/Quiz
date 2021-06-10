@@ -16,17 +16,18 @@ qanswers = {
         'Awesome', 'It is fine',
         'The teacher needs to support more students', 'Others',
     ],
-    3: ["What thing does the school need to improve?" 'The school system',
-        'School facilities and equipment', 'School environment', 'Others', 3],
+    3: ["What thing does the school need to improve?" ,
+        'School facilities and equipment', 'School environment', 'Others', ],
 
     4: ["How is your friend or your classmate at school?:", 'Great', 'Not bad',
-        'I do not have friends at school', 'Other', 2],
+        'I do not have friends at school', 'Other', ],
 
-    5: ["Something i like in this world:", '123', '123456', 'abc', 'abc', 3],
+    5: ["Do you think is hard for you to learn the subject you choose this year?:", 'No', 'A' ' bit', 'Yes', 'Other', ],
 
-    6: ["wo shi bu shi ni baba", 'shi', 'en', 'mei cuo', 'shi', 1],
 
-    7: ["Is joel gay?", 'Absolutely', 'Definitely', 'Obivously', 'Absolutely', 1],
+    6: ["Does the school private you a good equipment for your study?", 'Yes', 'No', 'Not bad', ],
+
+    7: ["Is this quiz  enough for you to give the school feedback?", 'Yes', 'Just a few things', 'No'],
 }
 
 
@@ -77,18 +78,9 @@ class Quizstarter:
                                 pady=100)
         self.quiz_frame.grid()
         self.handing_label = Label(self.quiz_frame,
-                                   text="Welcome to the Quiz",
+                                   text="Thanks for your responses",
                                    bg=background_color)
         self.handing_label.grid(row=0, padx=20)
-
-        self.user_label = Label(self.quiz_frame,
-                                text="Enter your name:",
-                                font=("Tw Cen MT", "16"),
-                                bg=background_color)
-        self.user_label.grid(row=2, padx=30, pady=20)
-
-        self.entry_box = Entry(self.quiz_frame)
-        self.entry_box.grid(row=3, padx=20, pady=20)
 
         self.continue_button = Button(self.quiz_frame,
                                       text='Exit',
