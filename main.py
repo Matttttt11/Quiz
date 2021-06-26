@@ -1,7 +1,4 @@
 from tkinter import *
-from tkinter.font import families
-
-from numpy.random import shuffle
 from os import makedirs
 from json import dump
 
@@ -25,7 +22,7 @@ qanswers = {
 
     5: ["Do you think is hard for you to learn the subject you choose this year?:", 'No', 'A' ' bit', 'Yes', 'Other', ],
 
-    6: ["Does the school private you a good equipment for your study?", 'Yes', 'No', 'Not bad', ],
+    6: ["Does the school provide you a good equipment for your study?", 'Yes', 'No', 'Not bad', ],
 
     7: ["Is this quiz  enough for you to give the school feedback?", 'Yes', 'Just a few things', 'No'],
 }
