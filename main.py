@@ -164,11 +164,11 @@ class Quizstarter:
         if check:
             label = Label(
                 self.quiz_frame,
-                text="Place chose one",
+                text="Please choose one",
                 font=("Tw Cen MT", "16"),
                 bg=background_color
             )
-            label.grid(row=8, padx=10, pady=10)
+            label.grid(row=10, padx=10, pady=10)
 
     def test_progress(self):
         choice = self.var1.get()
