@@ -25,7 +25,7 @@ qanswers = {
     6: ["Does the school provide you a good equipment for your study?", 'Yes', 'No', 'Not bad', ],
 
     7: ["Is this quiz  enough for you to give the school feedback?", 'Yes', 'Just a few things', 'No'],
-}
+} 
 
 
 class Quizstarter:
@@ -166,6 +166,7 @@ class Quizstarter:
                 self.quiz_frame,
                 text="Please choose one",
                 font=("Tw Cen MT", "16"),
+                fg='red',
                 bg=background_color
             )
             label.grid(row=10, padx=10, pady=10)
