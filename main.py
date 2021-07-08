@@ -251,8 +251,8 @@ class Quizstarter:
         self.question(choice == 0)
 
 
-root = Tk()
-root.title("Quiz")
-makedirs('data', exist_ok=True)
+root = Tk() # Make the window as a root.
+root.title("Quiz") # Give the title of the root.
+makedirs('data', exist_ok=True) #Create a data
 quiz_instance = Quizstarter(root)
 root.mainloop()  # Keep showing the window until we close it.
