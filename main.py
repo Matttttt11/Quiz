@@ -1,9 +1,11 @@
-from tkinter import *
+# I create a directory
 from os import makedirs
+# Save the dictionary as json
 from json import dump
+# For UI
+from tkinter import *
 
-name_list = []
-
+# Create question dictionary to give the question to user
 qanswers = {
     1: [
         "How is your school learning so far?",
@@ -22,104 +24,145 @@ qanswers = {
 
     5: ["Do you think is hard for you to learn the subject you choose this year?:", 'No', 'A' ' bit', 'Yes', 'Other', ],
 
-    6: ["Does the school provide you a good equipment for your study?", 'Yes', 'No', 'Not bad', ],
+    6: ["Does the school private you a good equipment for your study?", 'Yes', 'No', 'Not bad', ],
 
     7: ["Is this quiz  enough for you to give the school feedback?", 'Yes', 'Just a few things', 'No'],
-} 
+}
 
 
+# Create a class for user interface
 class Quizstarter:
     def __init__(self, parent):
-        self.data = {}
+        self.quiz_frame = Frame()
         self.parent = parent
         self.name = None
         self.number = 0
+        self.data = {}
 
         self.name_page()
 
-    def name_page(self, check=False,message=''):
+    # Define a function for getting the user name
+    def name_page(self, check=False, message=None):
+        # The check val is for does user enter any thing if not it will be True
+        # The message val is for giving the message to the user if needed
+
+        self.quiz_frame.destroy()
+
+        # Define the color in used.
         background_color = "#f4eee2"
         color_for_button = "#e3edf6"
-        # frame setup
-        self.quiz_frame = Frame(self.parent,
-                                bg=background_color,
-                                padx=100,
-                                pady=100)
+
+        # Set up a frame for the name page
+        self.quiz_frame = Frame(
+            self.parent,
+            bg=background_color,
+            padx=100,
+            pady=100
+        )
         self.quiz_frame.grid()
-        handing_label = Label(self.quiz_frame,
-                              text="Welcome to the Quiz",
-                              bg=background_color)
-        handing_label.grid(row=0, padx=30)
 
+        # Create a label for handing in frame
+        Label(
+            self.quiz_frame,
+            text="Welcome to the Quiz",
+            bg=background_color
+        ).grid(row=0, padx=30)
+
+        # If check is True show error message in frame
         if check:
-            user_label = Label(self.quiz_frame,
-                               text="Please enter your name:",
-                               font=("Indie Flower", "17"), fg="Red",
-                               bg=background_color)
+            Label(
+                self.quiz_frame,
+                text="Please enter your name:",
+                font=("Indie Flower", "17"), fg="Red",
+                bg=background_color
+            ).grid(row=2, padx=30, pady=20)
+        # if check is not True show normal message in frame
         else:
-            user_label = Label(self.quiz_frame,
-                               text="Enter your name:",
-                               font=("Indie Flower", "17"),
-                               bg=background_color)
-        user_label.grid(row=2, padx=30, pady=20)
+            Label(
+                self.quiz_frame,
+                text="Enter your name:",
+                font=("Indie Flower", "17"),
+                bg=background_color
+            ).grid(row=2, padx=30, pady=20)
 
-        self.entry_box = Entry(self.quiz_frame,textvariable=self.name)
+        # Create an entry box for the user to input their name in frame
+        self.entry_box = Entry(self.quiz_frame, textvariable=self.name)
         self.entry_box.grid(row=3, padx=30, pady=20)
 
-        def keypass(event):
+        # Defind function for key press event
+        def keypress(event):
+            # if key press enter run self.name_collection
             if event.keycode == 13:
                 self.name_collection()
 
-        self.entry_box.bind('<Key>', keypass)
+        self.entry_box.bind('<Key>', keypress)
 
-        continue_button = Button(self.quiz_frame,
-                                 text='Continue',
-                                 font=("Indie Flower", "13", "bold"),
-                                 bg=color_for_button,
-                                 command=self.name_collection)
-        continue_button.grid(row=4, padx=20, pady=25)
-        if message!='':
-            message=Label(self.quiz_frame,
-                  text=message,
-                  font=("Indie Flower", "17"),
-                  fg='red',
-                  bg=background_color)
-            message.grid(row=5)
+        # Create button for continue in frame
+        Button(
+            self.quiz_frame,
+            text='Continue',
+            font=("Indie Flower", "13", "bold"),
+            bg=color_for_button,
+            command=self.name_collection  # When press run self.name_collection
+        ).grid(row=4, padx=20, pady=25)
 
+        # if message is giveing show message
+        if message is not None:
+            Label(
+                self.quiz_frame,
+                text=message,
+                font=("Indie Flower", "17"),
+                fg='red',
+                bg=background_color
+            ).grid(row=5)
 
+    # Define a function for the end page will show after user answer all the qanswers
     def end_page(self):
         background_color = "OldLace"
         color_for_button = "#e3edf6"
-        # frame setup
-        self.quiz_frame = Frame(self.parent,
-                                bg=background_color,
-                                padx=100,
-                                pady=100)
+
+        # Set up a frame for the end page
+        self.quiz_frame = Frame(
+            self.parent,
+            bg=background_color,
+            padx=100,
+            pady=100
+        )
         self.quiz_frame.grid()
-        handing_label = Label(self.quiz_frame,
-                              text="Thanks for your responses",
-                              bg=background_color)
-        handing_label.grid(row=0, padx=20)
 
-        continue_button = Button(self.quiz_frame,
-                                 text='Exit',
-                                 font=("Helvetica", "13", "bold"),
-                                 bg=color_for_button,
-                                 command=exit)
-        continue_button.grid(row=4, padx=20, pady=25)
+        # Create a label for handing in frame
+        Label(
+            self.quiz_frame,
+            text="Thanks for your responses",
+            bg=background_color
+        ).grid(row=0, padx=20)
 
+        # Create button for exit in frame
+        Button(
+            self.quiz_frame,
+            text='Exit',
+            font=("Helvetica", "13", "bold"),
+            bg=color_for_button,
+            command=exit  # When press exit the pargam
+        ).grid(row=4, padx=20, pady=25)
+
+    # Define a function for name check
     def name_collection(self):
+        # Get val from entry box
         self.name = self.entry_box.get()
+        # Check is it a blank if True show the name page with the error message
         if self.name.replace(' ', '') == '':
-            self.quiz_frame.destroy()
             self.name_page(True)
-        elif len(self.name)>10:
-            self.quiz_frame.destroy()
+        # Check is it to long if True show the name page with the message
+        elif len(self.name) > 10:
             self.name_page(message='Do not enter more than 10 characters.')
+        # Check is it to long if True show the name page with the message
         else:
-            self.new_question()
+            # Start question
+            self.question()
 
-    def new_question(self, check=False):
+    # Define function for question page
+    def question(self, check=False):
         if not check:
             self.number += 1
 
@@ -130,52 +173,82 @@ class Quizstarter:
             return
         background_color = "OldLace"
         color_for_button = "#e3edf6"
-        # frame setup
+
+        # Set up a frame for the question page
         self.quiz_frame = Frame(root,
                                 bg=background_color,
                                 padx=100,
                                 pady=100)
         self.quiz_frame.grid()
 
-        question_label = Label(self.quiz_frame, text=qanswers[self.number][0], font=("Tw Cen MT", "16"),
-                               bg=background_color)
-        question_label.grid(row=1, padx=10, pady=10)
+        # Create a label for question in frame
+        Label(
+            self.quiz_frame,
+            text=qanswers[self.number][0],
+            font=("Tw Cen MT", "16"),
+            bg=background_color
+        ).grid(row=1, padx=10, pady=10)
 
-        self.var1 = IntVar()
+        i = 0
+        # Create options for question in frame
+        self.var = IntVar()
         for i in range(1, len(qanswers[self.number])):
-            rb = Radiobutton(self.quiz_frame, text=qanswers[self.number][i], font=("Helvetica", "12"),
-                             bg=background_color,
-                             value=i, padx=10, pady=10, variable=self.var1, indicator=0, background=color_for_button)
-            rb.grid(row=i + 1, sticky=W)
+            Radiobutton(
+                self.quiz_frame,
+                text=qanswers[self.number][i],
+                font=("Helvetica", "12"),
+                bg=background_color,
+                value=i,
+                padx=10,
+                pady=10,
+                variable=self.var,
+                indicator=0,
+                background=color_for_button
+            ).grid(row=i + 1, sticky='w')
 
-        quiz_instance = Button(self.quiz_frame, text="Confirm", font=("Helvetica", "13", "bold"),
-                               bg=color_for_button, command=self.test_progress)
-        quiz_instance.grid(row=7, padx=5, pady=5)
+        # Create a button for confirm in frame
+        Button(
+            self.quiz_frame,
+            text="Confirm",
+            font=("Helvetica", "13", "bold"),
+            bg=color_for_button,
+            command=self.answer  # When press run self.answer
+        ).grid(row=2 + i, padx=5, pady=5)
 
+        # Defind a function for back
         def back():
             self.number -= 2
-            self.new_question()
+            self.question()
 
         if self.number > 1:
-            back_button = Button(self.quiz_frame, text="Back", font=("Helvetica", "13", "bold"),
-                                 bg=color_for_button, command=back)
-            back_button.grid(row=8, padx=5, pady=5)
+            Button(
+                self.quiz_frame,
+                text="Back",
+                font=("Helvetica", "13", "bold"),
+                                 bg=color_for_button,
+                command=back # When press run back
+            ).grid(row=8, padx=5, pady=5)
 
         if check:
-            label = Label(
-                self.quiz_frame,
-                text="Please choose one",
-                font=("Tw Cen MT", "16"),
-                fg='red',
-                bg=background_color
-            )
-            label.grid(row=10, padx=10, pady=10)
-
-    def test_progress(self):
-        choice = self.var1.get()
+            if self.number > 1:
+                Label(
+                    self.quiz_frame,
+                    text="Place chose one",
+                    font=("Tw Cen MT", "16"),
+                    bg=background_color
+                ).grid(row=10, padx=10, pady=10)
+            else:
+                Label(
+                    self.quiz_frame,
+                    text="Place choose one",
+                    font=("Tw Cen MT", "16"),
+                    bg=background_color
+                ).grid(row=8, padx=10, pady=10)
+    # Crate variable that can let the question page keep apprearing the questions.
+    def answer(self):
+        choice = self.var.get()
         self.data[qanswers[self.number][0]] = qanswers[self.number][choice]
-        self.new_question(choice == 0)
-
+        self.question(choice == 0)
 
 
 root = Tk()
